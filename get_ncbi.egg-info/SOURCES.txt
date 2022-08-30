@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+get_ncbi/__init__.py
+get_ncbi/main.py
+get_ncbi.egg-info/PKG-INFO
+get_ncbi.egg-info/SOURCES.txt
+get_ncbi.egg-info/dependency_links.txt
+get_ncbi.egg-info/not-zip-safe
+get_ncbi.egg-info/requires.txt
+get_ncbi.egg-info/top_level.txt
+scripts/get_ncbi

@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: get-ncbi
+Version: 1.0.2
+Summary: Package for distribution
+Home-page: 
+Download-URL: 
+Author: msjeon27
+Author-email: msjeon27@cau.ac.kr
+Keywords: GETNCBI,getncbi
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+License-File: LICENSE
