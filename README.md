@@ -55,3 +55,8 @@ It also provides multiple format options! (e.g. -f geno prot trans gff)
 
 ## Features
   * Python script to automatically download representative species informations from NCBI genome
+
+
+## Large update log
+get_ncbi 1.1.0
+- When multiple file types were entered, it was modified to distinguish which file types were excluded from Not found. This provides information such as certain species provide genome files, but not protein files.

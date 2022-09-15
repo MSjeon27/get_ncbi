@@ -6,7 +6,7 @@ from distutils.command.build_py import build_py
 
 setup(
     name             = 'get_ncbi',
-    version          = '1.0.2',
+    version          = '1.1.0',
     description      = 'Package for distribution',
     author           = 'msjeon27',
     author_email     = 'msjeon27@cau.ac.kr',
@@ -18,7 +18,7 @@ setup(
     keywords         = ['GETNCBI', 'getncbi'],
     cmdclass         = {'build_py': build_py},
 	scripts          = ['scripts/get_ncbi'],
-    python_requires  = '>=3',
+    python_requires  = '>=3.6',
     zip_safe=False,
     classifiers      = [
         "Programming Language :: Python :: 3",

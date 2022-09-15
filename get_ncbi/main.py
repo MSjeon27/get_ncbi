@@ -36,17 +36,18 @@ def main():
         urldict[f_url] = spformat.replace('+', '_')
 
     # Set not founded list
-    not_founded = []
+    not_founded = dict()
 
     # Analyze the Url address for crawling
     linkdict = dict()
+    Nolink_list = []
     for url in urldict:
         html = urlopen(url).read()
         soup = BeautifulSoup(html, 'html.parser')
         shifttags = soup.select('span.shifted>a[href]')
         # Pass the search which not founded
         if len(shifttags) == 0:
-            not_founded.append(urldict[url])
+            Nolink_list.append(urldict[url])
             continue
         datafiles = []
         for i in shifttags:
@@ -56,6 +57,8 @@ def main():
         spname = urldict[url]
         # Append links to link directory
         linkdict[spname] = datafiles
+    # Append link not founded list
+    not_founded['Link not found'] = Nolink_list
 
     # Set type directory
     ftype = {
@@ -66,15 +69,23 @@ def main():
         'gbk' : 'genomic.gbff'
     }
 
+    # Set not founded list
+    for tp in args.format:
+        not_founded[ftype[tp]] = []
+
     # Download function
-    def linkdown(sp, lk, type):
+    def linkdown(sp, lk, tp):
+        founded = 0
         for f in lk:
-            if type in f:
+            if tp in f:
                 print(f'wget {f}')
                 os.system(f'wget {f}')
                 old_fname = os.path.basename(f)
-                new_fname = f'{sp}_{type}.gz'
+                new_fname = f'{sp}_{tp}.gz'
                 os.rename(old_fname, new_fname)
+                founded += 1
+        if founded == 0:
+            not_founded[tp].append(sp)
 
     # Download target files
     for sp in linkdict:
@@ -85,7 +96,12 @@ def main():
         print('\nWarning: Previous \'Not_founded.txt\' file has been removed!\n')
 
     with open('Not_founded.txt', 'w') as nf:
+        outfmt = ''
         for n in not_founded:
-            nf.write(n + '\n')
+            outfmt += n + ':\n'
+            for nv in list(set(not_founded[n])):
+                outfmt += nv + '\n'
+            outfmt += '\n'
+        nf.write(outfmt)
 
     os.chdir(cur_dir)
